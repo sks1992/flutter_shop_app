@@ -4,10 +4,6 @@ import 'package:provider/provider.dart';
 import '../providers/products.dart';
 
 class ProductDetailScreen extends StatelessWidget {
-  // final String title;
-  // final double price;
-
-  // ProductDetailScreen(this.title, this.price);
   static const routeName = '/product-detail';
 
   @override
@@ -21,6 +17,40 @@ class ProductDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(loadedProduct.title),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 300.0,
+              width: double.infinity,
+              child: Image.network(
+                loadedProduct.imageUrl,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              "\$ ${loadedProduct.price}",
+              style: TextStyle(color: Colors.grey, fontSize: 20.0),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 10.0),
+              width: double.infinity,
+              child: Text(
+                "${loadedProduct.description}",
+                textAlign: TextAlign.center,
+                softWrap: true,
+                style: TextStyle(color: Colors.black, fontSize: 20.0),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
